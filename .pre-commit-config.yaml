@@ -1,0 +1,30 @@
+# Note: don't use this config for your own repositories. Instead, see
+# "Version control integration" in docs/integrations/source_version_control.md
+
+repos:
+  - repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+    - id: black
+      args: # arguments to configure black
+        - --line-length=100
+      language_version: python3.9
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 3.9.2
+    hooks:
+    - id: flake8
+      args: ['--config=.flake8', '--tee', '--benchmark']
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v2.6.2
+    hooks:
+      - id: prettier
+        exclude: ^Pipfile\.lock
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: ['-f=lf']
